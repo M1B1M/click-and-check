@@ -1,0 +1,17 @@
+/* Scoped styles: no changes to the rest of your website. */
+.cc-bag{position:relative;isolation:isolate;width:100%;min-width:0;height:600px;overflow:hidden;background:transparent;cursor:default}
+.cc-bag::before{content:"";position:absolute;inset:12% 4% 8%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 60%,#b58b3924,transparent 66%)}
+.cc-bag__canvas{display:block;width:100%;height:100%;pointer-events:none}
+.cc-bag__fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .5s}
+.cc-bag[data-ready="true"] .cc-bag__fallback{opacity:0;pointer-events:none}
+.cc-bag__status{position:absolute;bottom:12px;left:15px;right:15px;text-align:center;color:#d4b881;font:13px/1.7 Tahoma,Arial,sans-serif;pointer-events:none}
+.cc-bag[data-ready="true"] .cc-bag__status{display:none}
+@media(max-width:900px){.cc-bag{height:520px}}
+@media(max-width:600px){.cc-bag{height:470px}}
+@media(prefers-reduced-motion:reduce){.cc-bag__fallback{transition:none}}
+/* Compatibility when replacing the original hero logo. Keep its class so
+   existing script.js listeners still find their element. */
+.brand-stage.cc-bag{display:block;min-height:0;perspective:none;transform-style:flat}
+.brand-stage.cc-bag::before{width:auto;height:auto;border:0;border-radius:0;box-shadow:none;transform:none;animation:none}
+.brand-stage.cc-bag::after{display:none}
+.brand-stage.cc-bag img.cc-bag__fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:0;box-shadow:none;transform:none;translate:none;animation:none}
