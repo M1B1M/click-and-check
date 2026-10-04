@@ -3730,3 +3730,407 @@ svg {
     }
 
 }
+/* =========================================
+   BETTER MOBILE LAYOUT
+========================================= */
+
+@media (max-width: 650px) {
+
+    /* أنواع العطور - سحب أفقي */
+    .collections {
+        display: flex;
+        gap: 14px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scroll-snap-type: x mandatory;
+
+        padding-bottom: 12px;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .collections::-webkit-scrollbar {
+        display: none;
+    }
+
+    .collection {
+        flex: 0 0 82%;
+        min-height: 240px;
+
+        scroll-snap-align: center;
+    }
+
+
+    /* المنتجات - صورتين جنب بعض */
+    .products {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 24px 12px;
+    }
+
+    .product-photo {
+        width: 100%;
+        height: auto;
+
+        aspect-ratio: 4 / 5;
+    }
+
+    .product h3 {
+        font-size: 17px;
+        margin-top: 12px;
+    }
+
+    .product p {
+        font-size: 12px;
+    }
+
+
+    /* أزرار التواصل */
+    .contact .buttons {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 10px;
+
+        width: 100%;
+    }
+
+    .contact .buttons .button {
+        width: 100%;
+        min-width: 0;
+
+        padding: 14px 10px;
+
+        font-size: 13px;
+    }
+
+
+    /* زر الانستغرام الرئيسي */
+    .contact > .button {
+        width: min(100%, 320px);
+    }
+
+
+    /* تفاصيل القصة */
+    .details {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 8px;
+    }
+
+    .details div {
+        font-size: 11px;
+    }
+
+    .details small {
+        font-size: 10px;
+    }
+
+}
+/* زر تواصل معنا */
+
+header .outline {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--gold);
+
+    transition:
+        color .35s ease,
+        border-color .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
+}
+
+
+/* الخلفية الذهبية وقت hover */
+
+header .outline::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: -2;
+
+    background: var(--gold);
+
+    transform: translateY(102%);
+
+    transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+
+
+/* اللمعة التلقائية */
+
+header .outline::after {
+    content: "";
+
+    position: absolute;
+
+    top: -60%;
+    left: -90%;
+
+    width: 42%;
+    height: 220%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.08),
+        rgba(255,235,190,.30),
+        rgba(255,255,255,.55),
+        rgba(255,235,190,.16),
+        transparent
+    );
+
+    transform: rotate(18deg);
+
+    pointer-events: none;
+
+    z-index: 2;
+
+    animation: contactButtonShine 5s ease-in-out infinite;
+}
+
+
+/* Hover */
+
+header .outline:hover {
+    color: #15130e;
+
+    border-color: var(--gold);
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 26px rgba(212,184,129,.16);
+}
+
+header .outline:hover::before {
+    transform: translateY(0);
+}
+
+
+/* حركة اللمعة */
+
+@keyframes contactButtonShine {
+
+    0%,
+    58% {
+        left: -90%;
+        opacity: 0;
+    }
+
+    62% {
+        opacity: 1;
+    }
+
+    80% {
+        left: 140%;
+        opacity: 1;
+    }
+
+    84%,
+    100% {
+        left: 140%;
+        opacity: 0;
+    }
+}
+/* =========================
+   HERO TITLE ANIMATION
+========================= */
+
+.hero-title {
+    overflow: hidden;
+}
+
+.hero-title .line {
+    display: block;
+    opacity: 0;
+    transform: translateY(45px);
+    filter: blur(8px);
+    animation: titleReveal 1s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.hero-title .line-1 {
+    animation-delay: .15s;
+}
+
+.hero-title .line-2 {
+    animation-delay: .45s;
+
+    color: var(--gold);
+
+    background: linear-gradient(
+        90deg,
+        #c3a568,
+        #f0dca3,
+        #b89450,
+        #f4dea2,
+        #c3a568
+    );
+
+    background-size: 220% 100%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        titleReveal 1s .45s cubic-bezier(.2,.8,.2,1) forwards,
+        titleGoldShine 6s 1.4s ease-in-out infinite;
+}
+
+
+/* دخول النص */
+
+@keyframes titleReveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(45px);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+
+/* لمعة ذهبية تمر على السطر الثاني */
+
+@keyframes titleGoldShine {
+
+    0%,
+    55% {
+        background-position: 100% 50%;
+    }
+
+    75% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* Hover بسيط */
+
+.hero-title:hover .line-2 {
+    filter: drop-shadow(
+        0 0 16px rgba(212,184,129,.22)
+    );
+}
+
+
+/* احترام تقليل الحركة */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .hero-title .line {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        animation: none;
+    }
+
+}
+.hero-title {
+    font-weight: 400;
+    line-height: 1.35;
+}
+
+.hero-title span {
+    display: block;
+}
+
+.title-white {
+    color: #f2eee5;
+}
+
+.title-gold {
+    color: #d4b881;
+}
+.hero-title {
+    line-height: 1.35;
+    font-weight: 400;
+}
+
+.hero-title span {
+    display: block;
+    position: relative;
+    width: fit-content;
+}
+
+/* السطر الأبيض */
+.title-white {
+    color: #f9edcf;
+}
+
+/* السطر الذهبي */
+.title-gold {
+    color: #d4b881;
+}
+
+/* لمعة ناعمة */
+.shimmer-title span::after {
+    content: "";
+    position: absolute;
+    top: -15%;
+    left: -25%;
+    width: 30%;
+    height: 130%;
+    background: linear-gradient(
+        100deg,
+        transparent 0%,
+        rgba(247, 230, 230, 0.05) 30%,
+        rgba(255, 239, 182, 0.55) 50%,
+        rgba(255,255,255,0.08) 70%,
+        transparent 100%
+    );
+    transform: skewX(-20deg);
+    filter: blur(1px);
+    pointer-events: none;
+    animation: textShimmer 5s ease-in-out infinite;
+}
+
+/* نخلي السطر الثاني يتأخر شوي */
+.title-gold::after {
+    animation-delay: 1.4s;
+}
+
+@keyframes textShimmer {
+    0%, 70% {
+        left: -35%;
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    90% {
+        left: 110%;
+        opacity: 1;
+    }
+
+    100% {
+        left: 110%;
+        opacity: 0;
+    }
+}
